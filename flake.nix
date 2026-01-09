@@ -77,7 +77,29 @@
                   indent.enable = false;
                 };
 
-                autocomplete.blink-cmp.enable = true;
+                autocomplete.blink-cmp = {
+                  enable = true;
+                  setupOpts = {
+                    keymap = {
+                      preset = "enter";
+                    };
+                    signature = {
+                      enabled = true;
+                    };
+                    sources = {
+                      default = ["lsp" "easy-dotnet" "path"];
+                      providers = {
+                        "easy-dotnet" = {
+                          name = "easy-dotnet";
+                          enabled = true;
+                          module = "easy-dotnet.completion.blink";
+                          score_offset = 10000;
+                          async = true;
+                        };
+                      };
+                    };
+                  };
+                };
 
                 binds = {
                   whichKey.enable = true;
