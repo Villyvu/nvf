@@ -130,6 +130,7 @@
                 filetree.nvimTree = {
                   enable = true;
                   setupOpts = {
+                    disable_netrw = true;
                     renderer = {
                       indent_markers.enable = true;
                       icons.glyphs.folder = {
@@ -194,6 +195,7 @@
               };
             })
             ./keymaps.nix
+            ./nvim-dap.nix
           ];
         })
         .neovim;
