@@ -72,7 +72,10 @@
                 };
                 telescope.enable = true;
                 utility.icon-picker.enable = true;
-                treesitter.enable = true;
+                treesitter = {
+                  enable = true;
+                  indent.enable = false;
+                };
 
                 autocomplete.blink-cmp.enable = true;
 
@@ -131,7 +134,6 @@
 
                 #Vim options
                 options = {
-                  breakindent = true;
                   signcolumn = "yes";
                   updatetime = 250;
                   splitright = true;
@@ -141,6 +143,16 @@
                   timeoutlen = 300;
                   list = true;
                   confirm = true;
+                  # 🔑 indentation (missing!)
+                  autoindent = true;
+                  smartindent = true;
+                  copyindent = true;
+                  preserveindent = true;
+
+                  breakindent = true;
+
+                  # 🔑 this fixes `o` jumping
+                  formatoptions = "crj";
                 };
 
                 lsp.formatOnSave = true;
@@ -149,9 +161,12 @@
                     enable = true;
                     lsp.enable = true;
                     format.enable = true;
+                    treesitter.enable = true;
                   };
                   csharp = {
                     enable = true;
+                    lsp.enable = false;
+                    treesitter.enable = true;
                   };
                 };
               };

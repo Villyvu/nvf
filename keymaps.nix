@@ -79,10 +79,5 @@ in {
       desc = "Go to implementation";
       lua = true;
     })
-    (nmap {
-      key = "<leader>sn";
-      action = ''builtin.find_files { cwd = vim.fn.stdpath './flake.nix'}'';
-      desc = "[S]earch NVF config";
-    })
   ];
 }
