@@ -41,11 +41,18 @@
                   profile = "telescope";
                 };
 
+                extraPackages = with pkgs; [netcoredbg];
                 lazy = {
                   plugins = {
                     "easy-dotnet.nvim" = {
                       package = pkgs.vimPlugins.easy-dotnet-nvim;
                       setupModule = "easy-dotnet";
+                      setupOpts = {
+                        debugger = {
+                          bin_path = "${pkgs.netcoredbg}/bin/netcoredbg";
+                          auto_register_dap = true;
+                        };
+                      };
                       ft = "cs";
                     };
                   };
