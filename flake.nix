@@ -173,16 +173,7 @@
                   timeoutlen = 300;
                   list = true;
                   confirm = true;
-                  # 🔑 indentation (missing!)
-                  autoindent = true;
-                  smartindent = true;
-                  copyindent = true;
-                  preserveindent = true;
-
                   breakindent = true;
-
-                  # 🔑 this fixes `o` jumping
-                  formatoptions = "crj";
                 };
 
                 lsp.formatOnSave = true;
