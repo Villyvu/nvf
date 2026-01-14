@@ -34,12 +34,16 @@ in {
       desc = "Clear search highlight";
     })
 
+    # Navigation
     (nmap {
-      key = "<Esc>";
-      action = "<cmd>nohlsearch<CR>";
-      desc = "Clear search highlight";
+      key = "<A-j>";
+      action = "<C-d>zz";
     })
 
+    (nmap {
+      key = "<A-k>";
+      action = "<C-u>zz";
+    })
     (nmap {
       key = "<C-h>";
       action = "<C-w><C-h>";
@@ -87,6 +91,12 @@ in {
     (nmap {
       key = "grr";
       action = ''require('telescope.builtin').lsp_references'';
+      desc = "Go to references";
+      lua = true;
+    })
+    (nmap {
+      key = "gri";
+      action = ''require('telescope.builtin').lsp_implementations'';
       desc = "Go to implementation";
       lua = true;
     })

@@ -146,6 +146,11 @@
                       };
                     };
                     view = {
+                      width = {
+                        min = 30;
+                        max = -1;
+                        padding = 1;
+                      };
                       relativenumber = true;
                     };
                   };
