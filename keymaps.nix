@@ -9,6 +9,17 @@
     mode = "n";
     inherit key action desc silent lua;
   };
+
+  dotnet = {
+    key,
+    action,
+    desc,
+    lua ? false,
+  }: {
+    mode = "n";
+    silent = true;
+    inherit key action desc;
+  };
 in {
   config.vim.keymaps = [
     (nmap {
@@ -78,6 +89,23 @@ in {
       action = ''require('telescope.builtin').lsp_references'';
       desc = "Go to implementation";
       lua = true;
+    })
+
+    # Dotnet Keymaps
+    (dotnet {
+      key = "<leader>dts";
+      action = "<cmd>Dotnet testrunner<CR>";
+      desc = "Start testrunner";
+    })
+    (dotnet {
+      key = "<leader>dtb";
+      action = "<cmd>Dotnet testrunner refresh build<CR>";
+      desc = "Start testrunner";
+    })
+    (dotnet {
+      key = "<leader>dwr";
+      action = "<cmd>Dotnet watch<CR>";
+      desc = "Watch project";
     })
   ];
 }
