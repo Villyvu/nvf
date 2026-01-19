@@ -41,7 +41,9 @@
                   profile = "telescope";
                 };
 
-                extraPackages = with pkgs; [netcoredbg];
+                extraPackages = with pkgs; [
+                  netcoredbg
+                ];
                 lazy = {
                   plugins = {
                     "easy-dotnet.nvim" = {
@@ -65,6 +67,26 @@
                 theme = {
                   enable = true;
                   name = "onedark";
+                };
+
+                notes.neorg = {
+                  enable = true;
+                  treesitter.enable = true;
+                  setupOpts = {
+                    "core.default" = {
+                      enable = true;
+                      };
+                    load = {
+                    "core.concealer" = {};
+                    "core.dirman" = {
+                      config = {
+                        workspaces = {
+                          notes = "~/notes";
+                        };
+                      };
+                    };
+                  };
+                    };
                 };
 
                 telescope = {
