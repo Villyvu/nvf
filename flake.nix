@@ -43,6 +43,7 @@
 
                 extraPackages = with pkgs; [
                   netcoredbg
+                  csharpier
                 ];
                 lazy = {
                   plugins = {
@@ -148,7 +149,14 @@
                 formatter.conform-nvim = {
                   enable = true;
                   setupOpts = {
+                    default_format_opts = {
+                      async = true;
+                      timeout_ms = 5000;
+                    };
                     command = "ConformInfo";
+                    formatters_by_ft = {
+                      cs = ["csharpier"];
+                    };
                     format_on_save = {
                       timeout_ms = 500;
                       lsp_fallback = true;
