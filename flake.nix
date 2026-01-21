@@ -44,6 +44,7 @@
                 extraPackages = with pkgs; [
                   netcoredbg
                   csharpier
+                  libxml2
                 ];
                 lazy = {
                   plugins = {
@@ -156,6 +157,7 @@
                     command = "ConformInfo";
                     formatters_by_ft = {
                       cs = ["csharpier"];
+                      xml = ["xmllint"];
                     };
                     format_on_save = {
                       timeout_ms = 500;
