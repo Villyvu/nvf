@@ -5,9 +5,9 @@
     desc ? null,
     silent ? true,
     lua ? false,
+    mode ? "n"
   }: {
-    mode = "n";
-    inherit key action desc silent lua;
+    inherit key action desc silent lua mode;
   };
 
   dotnet = {
@@ -22,6 +22,11 @@
   };
 in {
   config.vim.keymaps = [
+    (nmap {
+      key = "<leader>q";
+      action = "<cmd>lua vim.diagnostic.setloclist()<cr>";
+      desc = "Open diagnostic location list";
+    })
     (nmap {
       key = "<leader>q";
       action = "<cmd>lua vim.diagnostic.setloclist()<cr>";
@@ -103,19 +108,45 @@ in {
 
     # Dotnet Keymaps
     (dotnet {
-      key = "<leader>dts";
+      key = "ædts";
       action = "<cmd>Dotnet testrunner<CR>";
       desc = "Start testrunner";
     })
     (dotnet {
-      key = "<leader>dtb";
+      key = "ædtb";
       action = "<cmd>Dotnet testrunner refresh build<CR>";
       desc = "Start testrunner";
     })
     (dotnet {
-      key = "<leader>dwr";
+      key = "ædwr";
       action = "<cmd>Dotnet watch<CR>";
       desc = "Watch project";
     })
+
+    (nmap {
+      key = "æf";
+      mode = ["n" "v"];
+      action = ''function() require("conform").format({async = true
+        }) end'';
+      desc = "Format buffer";
+      lua = true;
+    })
+    # (nmap {
+    #   key = "æf";
+    #   mode = "v";
+    #   action = ''
+    #     function() 
+    #      local start_line = vim.fn.line("'<")
+    #      local end_line = vim.fn.line("'>")
+    #
+    #     require("conform").format({async = true;
+    #     range = {
+    #     start = { start_line, 0 },
+    #     ["end"] = { end_line, 0 },
+    #   },
+    #     }) end'';
+    #   desc = "Format buffer";
+    #   lua = true;
+    # })
   ];
 }

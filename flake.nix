@@ -45,6 +45,7 @@
                   netcoredbg
                   csharpier
                   libxml2
+                  astyle
                 ];
                 lazy = {
                   plugins = {
@@ -57,7 +58,6 @@
                           auto_register_dap = true;
                         };
                       };
-                      ft = "cs";
                     };
                   };
                 };
@@ -77,18 +77,19 @@
                   setupOpts = {
                     "core.default" = {
                       enable = true;
-                      };
+                    };
                     load = {
-                    "core.concealer" = {};
-                    "core.dirman" = {
-                      config = {
-                        workspaces = {
-                          notes = "~/notes";
+                      "core.concealer" = {};
+                      "core.dirman" = {
+                        config = {
+                          workspaces = {
+                            notes = "~/notes";
+                            fs = "~/fs";
+                          };
                         };
                       };
                     };
                   };
-                    };
                 };
 
                 telescope = {
@@ -156,13 +157,13 @@
                     };
                     command = "ConformInfo";
                     formatters_by_ft = {
-                      cs = ["csharpier"];
+                      cs = ["astyle"];
                       xml = ["xmllint"];
                     };
-                    format_on_save = {
-                      timeout_ms = 500;
-                      lsp_fallback = true;
-                    };
+                    # format_on_save = {
+                    #   timeout_ms = 500;
+                    #   lsp_fallback = true;
+                    # };
                   };
                 };
 
@@ -213,7 +214,13 @@
                   breakindent = true;
                 };
 
-                lsp.formatOnSave = true;
+                # lsp = {
+                #   formatOnSave = true;
+                #   servers = {
+                #     lemminx = {
+                #     cmd = ()
+                #   };
+                # };
                 languages = {
                   nix = {
                     enable = true;
