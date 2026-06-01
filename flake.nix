@@ -17,7 +17,8 @@
               pkgs,
               lib,
               ...
-            }: {
+            }: let
+            in {
               config.vim = {
                 augroups = [
                   {
@@ -36,6 +37,8 @@
                   }
                 ];
 
+                git.enable = true;
+
                 fzf-lua = {
                   enable = true;
                   profile = "telescope";
@@ -46,6 +49,7 @@
                   csharpier
                   libxml2
                   astyle
+                  clojure
                 ];
                 lazy = {
                   plugins = {
@@ -221,6 +225,8 @@
                 #     cmd = ()
                 #   };
                 # };
+
+                  repl.conjure.enable = true;
                 languages = {
                   nix = {
                     enable = true;
@@ -231,6 +237,11 @@
                   csharp = {
                     enable = true;
                     lsp.enable = false;
+                    treesitter.enable = true;
+                  };
+                  clojure = {
+                    enable = true;
+                    lsp.enable = true;
                     treesitter.enable = true;
                   };
                 };
