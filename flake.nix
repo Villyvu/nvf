@@ -226,7 +226,7 @@
                 #   };
                 # };
 
-                  repl.conjure.enable = true;
+                repl.conjure.enable = true;
                 languages = {
                   nix = {
                     enable = true;
@@ -243,6 +243,22 @@
                     enable = true;
                     lsp.enable = true;
                     treesitter.enable = true;
+                  };
+                  typescript = {
+                    enable = true;
+                    lsp.enable = true;
+                    treesitter.enable = true;
+                  };
+                };
+
+                assistant.codecompanion-nvim = {
+                  enable = true;
+                  setupOpts = {
+                    strategies = {
+                      chat = { adapter = "claude_code"; };
+                      inline = { adapter = "claude_code"; };
+                      agent = { adapter = "claude_code"; };
+                    };
                   };
                 };
               };
