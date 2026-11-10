@@ -272,7 +272,7 @@
                 #     }
                 #   ''
                 # ];
-                statusline.lualine.inactiveSection.c = [
+                statusline.lualine.setupOpts.inactive_sections.lualine_c = [
                   "{'filename', path = 1}"
                 ];
                 visuals.nvim-web-devicons.enable = true;
@@ -324,6 +324,51 @@
                     enable = true;
                     lsp.enable = true;
                     treesitter.enable = true;
+                    format = {
+                      enable = true;
+                      type = ["prettier"];
+                    };
+                    extraDiagnostics = {
+                      enable = false;
+                      types = ["eslint_d"];
+                    };
+                  };
+                  angular = {
+                    enable = true;
+                    lsp.enable = true;
+                    format = {
+                      enable = true;
+                      type = ["prettier"];
+                    };
+                  };
+                };
+
+                lsp = {
+                  enable = true;
+                  lspconfig.enable = true; # ships nvim-lspconfig's eslint defaults
+
+                  servers.eslint = {
+                    enable = true;
+                    cmd = [
+                      "${pkgs.vscode-langservers-extracted}/bin/vscode-eslint-language-server"
+                      "--stdio"
+                    ];
+                    filetypes = [
+                      "javascript"
+                      "javascriptreact"
+                      "typescript"
+                      "typescriptreact"
+                      "htmlangular" # Angular templates (needs angular-eslint)
+                    ];
+                    root_markers = [
+                      "eslint.config.js"
+                      "eslint.config.mjs"
+                      "eslint.config.ts"
+                      ".eslintrc.js"
+                      ".eslintrc.cjs"
+                      ".eslintrc.json"
+                      "package.json"
+                    ];
                   };
                 };
 
@@ -331,9 +376,9 @@
                   enable = true;
                   setupOpts = {
                     strategies = {
-                      chat = { adapter = "claude_code"; };
-                      inline = { adapter = "claude_code"; };
-                      agent = { adapter = "claude_code"; };
+                      chat = {adapter = "claude_code";};
+                      inline = {adapter = "claude_code";};
+                      agent = {adapter = "claude_code";};
                     };
                   };
                 };
