@@ -2,6 +2,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nvf.url = "github:notashelf/nvf";
+    # Build nvf's source-built plugins (blink-cmp, etc.) against our nixpkgs.
+    # nvf's own pinned nixpkgs vendors blink.cmp's Cargo.lock inconsistently,
+    # breaking its cargoHash; a current nixpkgs resolves it.
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = {nixpkgs, ...} @ inputs: {
     packages.x86_64-linux = {
@@ -209,10 +213,10 @@
                       cs = ["astyle"];
                       xml = ["xmllint"];
                     };
-                    # format_on_save = {
-                    #   timeout_ms = 500;
-                    #   lsp_fallback = true;
-                    # };
+                    format_on_save = {
+                      timeout_ms = 500;
+                      lsp_fallback = true;
+                    };
                   };
                 };
 
@@ -244,7 +248,7 @@
                 };
 
                 statusline.lualine.enable = true;
-                statusline.lualine.icons.enable = true;
+                statusline.lualine.setupOpts.options.icons_enabled = true;
                 # Show the (relative) path to the file, not just the filename.
                 # path = 1 -> relative to cwd (use 2 for absolute, 3 for ~/absolute).
                 # statusline.lualine.activeSection.b = [
